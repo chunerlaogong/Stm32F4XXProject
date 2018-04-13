@@ -1,0 +1,8 @@
+--cpu Cortex-M4.fp
+".\objects\main.o"
+".\objects\startup_stm32f40xx.o"
+".\objects\stm32f4xx_gpio.o"
+--library_type=microlib --strict --scatter ".\Objects\Led.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Led.map" -o .\Objects\Led.axf
