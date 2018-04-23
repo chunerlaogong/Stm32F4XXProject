@@ -37,36 +37,37 @@
 ; Tailor this value to your application needs
 ; <h> Stack Configuration
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
-; </h>
-
+; </h>  
+;定义栈空间大小为1KBytes，用于局部变量，函数调用，函数形参的开销，堆栈段是在SRAM中
 Stack_Size      EQU     0x00000400
 
-                AREA    STACK, NOINIT, READWRITE, ALIGN=3
-Stack_Mem       SPACE   Stack_Size
-__initial_sp
+                AREA    STACK, NOINIT, READWRITE, ALIGN=3    ;告诉汇编器汇编一个新的代码段或者数据段
+Stack_Mem       SPACE   Stack_Size    ;用于分配1KB大小的空间
+__initial_sp   ;__initial_sp紧挨着SPACE语句放置，表示栈的结束地址，即栈顶地址，栈由高向低生长
 
 
 ; <h> Heap Configuration
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
-
+;定义堆的大小为512字节
 Heap_Size       EQU     0x00000200
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
 Heap_Mem        SPACE   Heap_Size
-__heap_limit
+__heap_limit    ;__heap_limit指向堆的顶端_heap_limit指向堆顶地址
 
-                PRESERVE8
-                THUMB
+                PRESERVE8   ;指定当前文件的堆栈按照8字节对齐
+                THUMB       ;表示后面的指令为THUMB指令13352014969
 
 
-; Vector Table Mapped to Address 0 at Reset
-                AREA    RESET, DATA, READONLY
-                EXPORT  __Vectors
+; Vector Table Mapped to Address 0 at Reset 中断向量表，相当于一个32位的整形数组
+                AREA    RESET, DATA, READONLY   ;汇编一个数据段，只读
+                EXPORT  __Vectors    ;声明向量表的起始地址 结束地址 向量表的大小 三个标号具有全局属性，可以被外部文件使用，如果是IAR编译器，则使用GLOBAL指令
                 EXPORT  __Vectors_End
                 EXPORT  __Vectors_Size
-
+								;中断向量表是在flash中，内核中断服务程序，DCD分配一个或多个以字节为单位的内存，以4字节对齐，并要求初始化这些内存
+								;在向量表中，DCD分配了一堆的内存，并且以ESR的入口地址初始化它们，中断向量表在复位以后从flash的0地址开始
 __Vectors       DCD     __initial_sp               ; Top of Stack
                 DCD     Reset_Handler              ; Reset Handler
                 DCD     NMI_Handler                ; NMI Handler
@@ -168,29 +169,29 @@ __Vectors       DCD     __initial_sp               ; Top of Stack
                 DCD     HASH_RNG_IRQHandler               ; Hash and Rng
                 DCD     FPU_IRQHandler                    ; FPU
                                          
-__Vectors_End
+__Vectors_End   ;中断向量表结束
 
-__Vectors_Size  EQU  __Vectors_End - __Vectors
+__Vectors_Size  EQU  __Vectors_End - __Vectors    ;求出中断向量表的大小
 
-                AREA    |.text|, CODE, READONLY
+                AREA    |.text|, CODE, READONLY   ;汇编代码段
 
 ; Reset handler
-Reset_Handler    PROC
+Reset_Handler    PROC   ;PROC表示子程序的开始
                  EXPORT  Reset_Handler             [WEAK]
-        IMPORT  SystemInit
+        IMPORT  SystemInit    ;IMPORT 导入SystemInit，_main,这两个函数在外部定义
         IMPORT  __main
 
-                 LDR     R0, =SystemInit
-                 BLX     R0
+                 LDR     R0, =SystemInit  ;这里的LDR是伪指令，加载一个立即数或者一个地址到一个寄存器
+                 BLX     R0               ;BLX会保存下条指令的地址到LDR，跳转执行完成后会返回到LDR保存的地址
                  LDR     R0, =__main
-                 BX      R0
-                 ENDP
+                 BX      R0               ;BX不用返回
+                 ENDP                     ;ENDP表示子程序执行完毕
 
 ; Dummy Exception Handlers (infinite loops which can be modified)
 
 NMI_Handler     PROC
-                EXPORT  NMI_Handler                [WEAK]
-                B       .
+                EXPORT  NMI_Handler                [WEAK]     ;WEAK表示弱定义，如果外部文件有优先定义了该标号则首先引用该标号，如果外部文件没有声明也不会出错，这里表示复位程序可以由用户在其他文件重新实现
+                B       .        ;无限循环，
                 ENDP
 HardFault_Handler\
                 PROC

@@ -29,7 +29,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
-
+#include "bsp_exti_key.h"
+#include "bsp_led.h"
+#include "common.h"
 /** @addtogroup Template_Project
   * @{
   */
@@ -162,6 +164,41 @@ void SysTick_Handler(void)
 /**
   * @}
   */ 
+
+
+
+
+
+
+void KEY0_IRQHandler(void)
+{
+	//delay_ms(10);
+
+	LED_On(0);		 
+	EXTI_ClearITPendingBit(EXTI_Line4);  
+}
+
+void KEY1_IRQHandler(void)
+{
+	//delay_ms(10);
+
+	LED_On(1);		 
+	EXTI_ClearITPendingBit(EXTI_Line3);  
+}
+void KEY2_IRQHandler(void)
+{
+	//delay_ms(10);
+	LED_On(0);		 
+	EXTI_ClearITPendingBit(EXTI_Line2);  
+}
+void KEYUP_IRQHandler(void)
+{
+	//delay_ms(10);
+	LED_On(0);		 
+	EXTI_ClearITPendingBit(EXTI_Line2);  
+}
+
+
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

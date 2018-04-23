@@ -478,7 +478,7 @@ static void SystemInit_ExtMemCtl(void);
   *         Initialize the Embedded Flash Interface, the PLL and update the 
   *         SystemFrequency variable.
   * @param  None
-  * @retval None
+  * @retval None   初始化系统和总线时钟，当程序进入main函数时,时钟已经由SystemInit函数初始化好了
   */
 void SystemInit(void)
 {

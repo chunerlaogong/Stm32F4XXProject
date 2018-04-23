@@ -1,34 +1,40 @@
 #include "stm32f4xx.h"
 #include "bsp_led.h"
 #include "bsp_key.h"
-void Delay(unsigned int count)
+#include "bsp_exti_key.h"
+#include "common.h"
+/*Led…¡À∏π¶ƒ‹*/
+void Led_Blink_Test(void)
 {
-	while(count--);
-}
-int main(void)
-{
-	//led…¡À∏
 	LED_GPIO_Config();
-	/*while(1)
-	{
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_8 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_9 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_10 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_11 );
-		Delay(0xFFFFFF);
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_8 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_9 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_10 );
-		GPIO_ToggleBits(GPIOE, GPIO_Pin_11 );
-		Delay(0xFFFFFF);
-	}*/
-	//∞¥º¸…®√Ë
+	LED_Blink(0);
+	LED_Blink(1);
+}
+/*∞¥º¸…®√Ë≤‚ ‘*/
+void KEY_Scan_Test(void)
+{
 	KEY_GPIO_Config();
 	while(1)
 	{
 		if(KEY_Scan(KEY1_GPIO_PORT, KEY1_PIN) == KEY_ON)
 		{
 			GPIO_ToggleBits(GPIOE, GPIO_Pin_8);
-		}
-	}
+		}		
+	}		
+
+}
+/*Õ‚≤ø÷–∂œ∞¥º¸≤‚ ‘*/
+void KEY_EXTI_INT_Test(void)
+{
+	delay_init(168);
+	Key_EXTI_Config();
+	
+}
+int main(void)
+{
+	LED_Off(0);
+	LED_Off(1);
+	KEY_EXTI_INT_Test();
+	while(1);
+		
 }

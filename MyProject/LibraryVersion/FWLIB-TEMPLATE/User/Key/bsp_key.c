@@ -1,6 +1,6 @@
 #include "bsp_key.h"
 
-void KEY_GPIO_Config()   //设置GPIO为输入，检测按键是否按下
+void KEY_GPIO_Config(void)   //设置GPIO为输入，检测按键是否按下
 {
 	/*1.开外设时钟*/
 	RCC_AHB1PeriphClockCmd(KEY1_GPIO_CLK, ENABLE);
@@ -25,6 +25,6 @@ uint8_t KEY_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 			return KEY_ON;
 		}
 	}
-	else 
 		return KEY_OFF;
+	
 }

@@ -35,3 +35,6 @@
 .\objects\stm32f4xx_it.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\objects\stm32f4xx_it.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\stm32f4xx_it.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\objects\stm32f4xx_it.o: ..\..\User\Key\bsp_exti_key.h
+.\objects\stm32f4xx_it.o: ..\..\User\Led\bsp_led.h
+.\objects\stm32f4xx_it.o: ..\..\User\Common\common.h
