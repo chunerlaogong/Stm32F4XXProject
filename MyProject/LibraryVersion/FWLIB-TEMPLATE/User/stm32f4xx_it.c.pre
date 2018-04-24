@@ -173,28 +173,28 @@ void SysTick_Handler(void)
 void KEY0_IRQHandler(void)
 {
     if(EXTI_GetITStatus(EXTI_Line4) != RESET)
-    {
-        LED_On(0);
-        EXTI_ClearITPendingBit(EXTI_Line4);
-    }
-
+    	{
+    		LED_On(0);
+    EXTI_ClearITPendingBit(EXTI_Line4);
+    	}
+        
 }
 
 void KEY1_IRQHandler(void)
 {
-    if(EXTI_GetITStatus(EXTI_Line3) != RESET)
-    {
-        LED_On(1);
-        EXTI_ClearITPendingBit(EXTI_Line3);
-    }
+    if(EXTI_GetITStatus(EXTI_Line4) != RESET)
+    	{
+    		LED_On(0);
+    EXTI_ClearITPendingBit(EXTI_Line4);
+    	}
 }
 void KEY2_IRQHandler(void)
 {
-    if(EXTI_GetITStatus(EXTI_Line2) != RESET)
-    {
-        LED_On(0);
-        EXTI_ClearITPendingBit(EXTI_Line2);
-    }
+    if(EXTI_GetITStatus(EXTI_Line4) != RESET)
+    	{
+    		LED_On(0);
+    EXTI_ClearITPendingBit(EXTI_Line4);
+    	}
 }
 
 

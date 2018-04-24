@@ -7,7 +7,6 @@
 #define KEY0_INT_GPIO_PIN                        GPIO_Pin_4
 #define KEY1_INT_GPIO_PIN                        GPIO_Pin_3
 #define KEY2_INT_GPIO_PIN                        GPIO_Pin_2
-#define KEYUP_INT_GPIO_PIN                       GPIO_Pin_1
 #define KEY_INT_EXTI_PORTSOURCE                  EXTI_PortSourceGPIOE
 #define KEY0_INT_EXTI_PINSOURCE                  EXTI_PinSource4
 #define KEY0_INT_EXTI_LINE                       EXTI_Line4
@@ -28,8 +27,11 @@
 #define KEY0_IRQHandler                          EXTI4_IRQHandler
 #define KEY1_IRQHandler                          EXTI3_IRQHandler
 #define KEY2_IRQHandler                          EXTI2_IRQHandler
-#define KEYUP_IRQHandler                         EXTI1_IRQHandler
 
+#define KEY0 		GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4) //PE4
+#define KEY1 		GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_3)	//PE3 
+#define KEY2 		GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_2) //PE2
+#define WK_UP 	    GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)	//PA0
 
 
 void Key_EXTI_Config(void);

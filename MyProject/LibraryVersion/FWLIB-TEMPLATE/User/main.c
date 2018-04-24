@@ -26,7 +26,7 @@ void KEY_Scan_Test(void)
 /*外部中断按键测试*/
 void KEY_EXTI_INT_Test(void)
 {
-	delay_init(168);
+	//delay_init(168);
 	Key_EXTI_Config();
 	
 }
