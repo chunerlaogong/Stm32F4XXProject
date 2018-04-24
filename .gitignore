@@ -2,6 +2,6 @@
 Output*/
 *.crf
 *.d
-*.crf
+*pre
 
 
