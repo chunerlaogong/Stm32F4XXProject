@@ -37,4 +37,5 @@
 .\objects\main.o: ..\..\User\Led\bsp_led.h
 .\objects\main.o: ..\..\User\Key\bsp_key.h
 .\objects\main.o: ..\..\User\Key\bsp_exti_key.h
+.\objects\main.o: ..\..\User\SysTick\bsp_systick.h
 .\objects\main.o: ..\..\User\Common\common.h

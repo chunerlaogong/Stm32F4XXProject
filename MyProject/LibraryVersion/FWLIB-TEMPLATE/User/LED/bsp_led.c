@@ -22,32 +22,30 @@ void LED_GPIO_Config(void)
 /*LED…¡À∏*/
 void LED_Blink(int ledNum)
 {
-    LED_GPIO_Config();
     while(1)
     {
         switch(ledNum)
         {
             case 0:
-                GPIO_ToggleBits(GPIOF, GPIO_Pin_9 );    //GPIOF9¿≠µÕ£¨µ∆¡¡
-                Delay(0xFFFFFF);
-                GPIO_ToggleBits(GPIOF, GPIO_Pin_9 );    //GPIOF9¿≠∏ﬂ£¨µ∆√
+                GPIO_ToggleBits(GPIOF, GPIO_Pin_9);    //GPIOF9¿≠µÕ£¨µ∆¡¡
+                delay_ms(1000);
+                GPIO_ToggleBits(GPIOF, GPIO_Pin_9);    //GPIOF9¿≠∏ﬂ£¨µ∆√
                 break;
             case 1:
 
-                GPIO_ToggleBits(GPIOF, GPIO_Pin_10 );
-                Delay(0xFFFFFF);
-                GPIO_ToggleBits(GPIOF, GPIO_Pin_10 );
+                GPIO_ToggleBits(GPIOF, GPIO_Pin_10);
+                delay_ms(1000);
+                GPIO_ToggleBits(GPIOF, GPIO_Pin_10);
                 break;
             default:
                 break;
         }
-        Delay(0xFFFFFF);
+        delay_ms(1000);
     }
 }
 /*µ„¡¡LED*/
 void LED_On(int ledNum)
 {
-    LED_GPIO_Config();
     switch(ledNum)
     {
         case 0:
@@ -63,7 +61,6 @@ void LED_On(int ledNum)
 /*œ®√LED*/
 void LED_Off(int ledNum)
 {
-    LED_GPIO_Config();
     switch(ledNum)
     {
         case 0:

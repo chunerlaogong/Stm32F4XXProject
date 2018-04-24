@@ -135,15 +135,6 @@ void PendSV_Handler(void)
 {
 }
 
-/**
-  * @brief  This function handles SysTick Handler.
-  * @param  None
-  * @retval None
-  */
-void SysTick_Handler(void)
-{
-
-}
 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
@@ -169,7 +160,7 @@ void SysTick_Handler(void)
 
 
 
-
+/*按键中断处理函数*/
 void KEY0_IRQHandler(void)
 {
     if(EXTI_GetITStatus(EXTI_Line4) != RESET)
@@ -197,8 +188,21 @@ void KEY2_IRQHandler(void)
     }
 }
 
-
-
+/*SysTick中断处理函数*/
+void SysTick_Handler(void)
+{
+	static int flag = 0;
+	if(flag == 0)
+	{
+		LED_On(0);
+		flag = 1;
+	}
+	else
+	{
+		LED_Off(0);
+		flag = 0;
+	}
+}
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

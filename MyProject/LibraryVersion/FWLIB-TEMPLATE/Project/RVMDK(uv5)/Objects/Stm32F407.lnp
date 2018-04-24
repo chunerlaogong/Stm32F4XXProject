@@ -48,6 +48,7 @@
 ".\objects\bsp_exti_key.o"
 ".\objects\bsp_clk_config.o"
 ".\objects\common.o"
+".\objects\bsp_systick.o"
 --strict --scatter ".\Objects\Stm32F407.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

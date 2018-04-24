@@ -1,34 +1,34 @@
 #include "common.h"
-						
-void Delay(unsigned int count)
+
+void delay_us(u32 nus)
 {
-	while(count--);
-}
-void delay_xms(u16 nms)
-{	 		  	  
-	u32 temp;		   
-	SysTick->LOAD=(u32)nms*fac_ms;			
-	SysTick->VAL =0x00;           			
-	SysTick->CTRL|=SysTick_CTRL_ENABLE_Msk ;         
-	do
-	{
-		temp=SysTick->CTRL;
-	}while((temp&0x01)&&!(temp&(1<<16)));	  
-	SysTick->CTRL&=~SysTick_CTRL_ENABLE_Msk;     
-	SysTick->VAL =0X00;     		  	 	    
+    u32 temp;
+    SysTick->LOAD = 9 * nus;
+    SysTick->VAL = 0X00; //清空计数器
+    SysTick->CTRL = 0X01; //使能，减到零是无动作，采用外部时钟源
+    do
+    {
+        temp = SysTick->CTRL; //读取当前倒计数值
+    }
+    while((temp & 0x01) && (!(temp & (1 << 16)))); //等待时间到达
+    SysTick->CTRL = 0x00; //关闭计数器
+    SysTick->VAL = 0X00; //清空计数器
 }
 
+
 void delay_ms(u16 nms)
-{	 	 
-	u8 repeat=nms/540;						
-											
-	u16 remain=nms%540;
-	while(repeat)
-	{
-		delay_xms(540);
-		repeat--;
-	}
-	if(remain)delay_xms(remain);
+{
+    u32 temp;
+    SysTick->LOAD = 9000 * nms;
+    SysTick->VAL = 0X00; //清空计数器
+    SysTick->CTRL = 0X01; //使能，减到零是无动作，采用外部时钟源
+    do
+    {
+        temp = SysTick->CTRL; //读取当前倒计数值
+    }
+    while((temp & 0x01) && (!(temp & (1 << 16)))); //等待时间到达
+    SysTick->CTRL = 0x00; //关闭计数器
+    SysTick->VAL = 0X00; //清空计数器
 }
-	
+
 

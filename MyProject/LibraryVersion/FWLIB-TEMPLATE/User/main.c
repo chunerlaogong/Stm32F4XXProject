@@ -2,6 +2,7 @@
 #include "bsp_led.h"
 #include "bsp_key.h"
 #include "bsp_exti_key.h"
+#include "bsp_systick.h"
 #include "common.h"
 /*Led…¡À∏π¶ƒ‹*/
 void Led_Blink_Test(void)
@@ -32,9 +33,19 @@ void KEY_EXTI_INT_Test(void)
 }
 int main(void)
 {
+	LED_GPIO_Config();
+
 	LED_Off(0);
 	LED_Off(1);
-	KEY_EXTI_INT_Test();
-	while(1);
+	while(1)
+	{
+		LED_On(1);
+		delay_ms(1000);
+		LED_Off(1);
+		delay_ms(1000);
+	}
+	//SysTick_Test();
+	//KEY_EXTI_INT_Test();
+	//while(1);
 		
 }

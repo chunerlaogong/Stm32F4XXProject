@@ -1,0 +1,46 @@
+#include "bsp_systick.h"
+
+/*
+ *nms：多少ms产生一次中断
+ */
+void SysTick_Init(u32 nms)
+{
+    /* 1个周期=(1/168MHz)us = (1/168*10^6)us
+     *SystemFrequency / 1000        1ms中断一次
+     * SystemFrequency / 100000      10us中断一次
+     * SystemFrequency / 1000000     1us中断一次
+     */
+    if(SysTick_Config(SystemCoreClock/1000))         //1ms定时器
+        {
+                while(1);
+        } //nms产生一次中断
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
