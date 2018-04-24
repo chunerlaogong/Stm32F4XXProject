@@ -1,10 +1,0 @@
-Dependencies for Project 'Led', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5ABBC8C7)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections-I E:\STM32\MyProject\BareMetalVersion\01-Led\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F407xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (stm32f4xx.h)(0x5ABBC853)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C245B8)
-I (stm32f4xx_gpio.h)(0x5ABBC8D3)
-F (.\startup_stm32f40xx.s)(0x582097A0)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I E:\STM32\MyProject\BareMetalVersion\01-Led\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 515" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f40xx.lst --xref -o .\objects\startup_stm32f40xx.o --depend .\objects\startup_stm32f40xx.d)
-F (.\stm32f4xx_gpio.c)(0x5ABBC8F1)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections-I E:\STM32\MyProject\BareMetalVersion\01-Led\RTE-I D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I D:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F407xx-o .\objects\stm32f4xx_gpio.o --omf_browse .\objects\stm32f4xx_gpio.crf --depend .\objects\stm32f4xx_gpio.d)
-I (stm32f4xx_gpio.h)(0x5ABBC8D3)
-I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C245B8)
-I (stm32f4xx.h)(0x5ABBC853)
