@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F40XX</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\User;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\Libraries\CMSIS\Include;..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\User\Led;..\..\User\Key;..\..\User\Common</IncludePath>
+              <IncludePath>..\..\User;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\Libraries\CMSIS\Include;..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\User\Led;..\..\User\Key;..\..\User\Common;..\..\User\SysTick;..\..\User\Usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -821,6 +821,11 @@
               <FileName>common.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\User\Common\common.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Usart\bsp_usart.c</FilePath>
             </File>
           </Files>
         </Group>

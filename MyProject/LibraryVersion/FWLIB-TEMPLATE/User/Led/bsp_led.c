@@ -17,7 +17,7 @@ void LED_GPIO_Config(void)
     GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
     /*4.调用GPIO初始化函数，把配置好的GPIO初始化结构体的成员的参数写入寄存器*/
     GPIO_Init(GPIOF, &GPIO_InitStruct);
-    //GPIO_SetBits(GPIOF, GPIO_Pin_9 | GPIO_Pin_10); //GPIOF9,GPIOF10置位，灯灭
+    GPIO_SetBits(GPIOF, GPIO_Pin_9 | GPIO_Pin_10); //GPIOF9,GPIOF10置位，灯灭
 }
 /*LED闪烁*/
 void LED_Blink(int ledNum)
@@ -32,7 +32,6 @@ void LED_Blink(int ledNum)
                 GPIO_ToggleBits(GPIOF, GPIO_Pin_9);    //GPIOF9拉高，灯灭
                 break;
             case 1:
-
                 GPIO_ToggleBits(GPIOF, GPIO_Pin_10);
                 delay_ms(1000);
                 GPIO_ToggleBits(GPIOF, GPIO_Pin_10);

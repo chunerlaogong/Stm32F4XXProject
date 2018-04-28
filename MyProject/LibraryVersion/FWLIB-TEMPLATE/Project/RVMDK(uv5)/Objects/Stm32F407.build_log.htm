@@ -28,19 +28,20 @@ Project File Date:  04/23/2018
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'F:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'FireLibraryProTemplate'
 compiling main.c...
-compiling stm32f4xx_it.c...
-compiling bsp_led.c...
-compiling common.c...
-compiling bsp_systick.c...
-linking...
-Program Size: Code=1308 RO-data=424 RW-data=4 ZI-data=1636  
-".\Objects\Stm32F407.axf" - 0 Error(s), 0 Warning(s).
+compiling bsp_usart.c...
+..\..\User\Usart\bsp_usart.c(46): warning:  #177-D: variable "NVIC_InitStructure" was declared but never referenced
+      NVIC_InitTypeDef NVIC_InitStructure;
+..\..\User\Usart\bsp_usart.c(98): error:  #260-D: explicit type is missing ("int" assumed)
+  _sys_exit(int x) 
+..\..\User\Usart\bsp_usart.c: 1 warning, 1 error
+".\Objects\Stm32F407.axf" - 1 Error(s), 1 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\Learning\Stm32F4XXProject\Stm32F4XXProject\MyProject\LibraryVersion\FWLIB-TEMPLATE\Project\RVMDK(uv5)\RTE
   F:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
+Target not created.
 </pre>
 </body>
 </html>

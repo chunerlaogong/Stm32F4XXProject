@@ -14,13 +14,13 @@ static void NVIC_Config(void)
     /*使能中断通道*/
     NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStruct);
-
+	/*按键1*/
     NVIC_InitStruct.NVIC_IRQChannel = KEY1_INT_EXTI_IRQ;
     NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0x02;
     NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0x01;
     NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStruct);
-
+	/*按键2*/
     NVIC_InitStruct.NVIC_IRQChannel = KEY2_INT_EXTI_IRQ;
     NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0x01;
     NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0x01;

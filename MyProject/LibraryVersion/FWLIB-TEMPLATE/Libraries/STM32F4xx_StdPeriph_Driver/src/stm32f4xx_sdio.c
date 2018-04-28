@@ -279,7 +279,7 @@ void SDIO_DeInit(void)
 void SDIO_Init(SDIO_InitTypeDef* SDIO_InitStruct)
 {
   uint32_t tmpreg = 0;
-    
+   
   /* Check the parameters */
   assert_param(IS_SDIO_CLOCK_EDGE(SDIO_InitStruct->SDIO_ClockEdge));
   assert_param(IS_SDIO_CLOCK_BYPASS(SDIO_InitStruct->SDIO_ClockBypass));

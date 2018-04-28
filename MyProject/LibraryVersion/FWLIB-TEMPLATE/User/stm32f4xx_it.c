@@ -184,7 +184,7 @@ void KEY2_IRQHandler(void)
     if(EXTI_GetITStatus(EXTI_Line2) != RESET)
     {
         LED_On(0);
-        EXTI_ClearITPendingBit(EXTI_Line2);
+        EXTI_ClearITPendingBit(EXTI_Line2); 
     }
 }
 
@@ -203,6 +203,39 @@ void SysTick_Handler(void)
 		flag = 0;
 	}
 }
+u16 USART_RX_STA=0;       //??????	
 
+#define USART_REC_LEN  			200  	//????????? 200
+#define EN_USART1_RX 			1		//??(1)/??(0)??1??
+u8 USART_RX_BUF[USART_REC_LEN];     //????,??USART_REC_LEN???.	  	
+extern u8  USART_RX_BUF[USART_REC_LEN]; //????,??USART_REC_LEN???.??????? 
+extern u16 USART_RX_STA;         		//??????	
+void USART1_IRQHandler(void)                	//??1??????
+{
+	u8 Res;
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //????(?????????0x0d 0x0a??)
+	{
+		Res =USART_ReceiveData(USART1);//(USART1->DR);	//????????
+		
+		if((USART_RX_STA&0x8000)==0)//?????
+		{
+			if(USART_RX_STA&0x4000)//????0x0d
+			{
+				if(Res!=0x0a)USART_RX_STA=0;//????,????
+				else USART_RX_STA|=0x8000;	//????? 
+			}
+			else //????0X0D
+			{	
+				if(Res==0x0d)USART_RX_STA|=0x4000;
+				else
+				{
+					USART_RX_BUF[USART_RX_STA&0X3FFF]=Res ;
+					USART_RX_STA++;
+					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//??????,??????	  
+				}		 
+			}
+		}   		 
+  } 
+} 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
