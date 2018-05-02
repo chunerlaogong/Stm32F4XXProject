@@ -35,14 +35,14 @@ void KEY_EXTI_INT_Test(void)
 }
 int main(void)
 {
-    LED_GPIO_Config();
+    //LED_GPIO_Config();
     //LED_Blink(0);
-    //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置系统中断优先级分组 2
-    USART1_Init();
-	 // USART_SendByte(USART1, 'h');
+   // NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置系统中断优先级分组 2
+    USART2_Init(115200);
     while(1)
     {
-        USART_SendByte(USART1, 'h');
+       USART_SendByte(USART2, 'V');
+	     delay_ms(1000);
     }
 
 }

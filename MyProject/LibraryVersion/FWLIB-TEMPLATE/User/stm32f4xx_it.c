@@ -32,6 +32,8 @@
 #include "bsp_exti_key.h"
 #include "bsp_led.h"
 #include "common.h"
+//#include "bsp_usart.h"
+
 /** @addtogroup Template_Project
   * @{
   */
@@ -184,58 +186,61 @@ void KEY2_IRQHandler(void)
     if(EXTI_GetITStatus(EXTI_Line2) != RESET)
     {
         LED_On(0);
-        EXTI_ClearITPendingBit(EXTI_Line2); 
+        EXTI_ClearITPendingBit(EXTI_Line2);
     }
 }
 
 /*SysTick中断处理函数*/
 void SysTick_Handler(void)
 {
-	static int flag = 0;
-	if(flag == 0)
-	{
-		LED_On(0);
-		flag = 1;
-	}
-	else
-	{
-		LED_Off(0);
-		flag = 0;
-	}
+    static int flag = 0;
+    if(flag == 0)
+    {
+        LED_On(0);
+        flag = 1;
+    }
+    else
+    {
+        LED_Off(0);
+        flag = 0;
+    }
 }
-u16 USART_RX_STA=0;       //??????	
 
-#define USART_REC_LEN  			200  	//????????? 200
-#define EN_USART1_RX 			1		//??(1)/??(0)??1??
-u8 USART_RX_BUF[USART_REC_LEN];     //????,??USART_REC_LEN???.	  	
-extern u8  USART_RX_BUF[USART_REC_LEN]; //????,??USART_REC_LEN???.??????? 
-extern u16 USART_RX_STA;         		//??????	
-void USART1_IRQHandler(void)                	//??1??????
+ 
+ 
+
+
+/*void USART2_IRQHandler(void)                    //??1??????
 {
-	u8 Res;
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //????(?????????0x0d 0x0a??)
-	{
-		Res =USART_ReceiveData(USART1);//(USART1->DR);	//????????
-		
-		if((USART_RX_STA&0x8000)==0)//?????
-		{
-			if(USART_RX_STA&0x4000)//????0x0d
-			{
-				if(Res!=0x0a)USART_RX_STA=0;//????,????
-				else USART_RX_STA|=0x8000;	//????? 
-			}
-			else //????0X0D
-			{	
-				if(Res==0x0d)USART_RX_STA|=0x4000;
-				else
-				{
-					USART_RX_BUF[USART_RX_STA&0X3FFF]=Res ;
-					USART_RX_STA++;
-					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//??????,??????	  
-				}		 
-			}
-		}   		 
-  } 
-} 
+    u8 res;
+    if(USART_GetITStatus(USART2,
+                         USART_IT_RXNE) != RESET)  //接收中断(接收到的数据必须是0x0d 0x0a结尾)
+    {
+        res = USART_ReceiveData(USART2); //(USART2->DR);
+//读取接收到的数据
+
+        if((USART2_RX_STA & 0x8000) == 0) //接收未完成
+        {
+            if(USART2_RX_STA & 0x4000) //接收到了0x0d
+            {
+                if(res != 0x0a)USART2_RX_STA = 0; //接收错误,重新开始
+                else USART2_RX_STA |= 0x8000;
+//接收完成了
+            }
+            else //还没收到0X0D
+            {
+                if(res == 0x0d)USART2_RX_STA |= 0x4000;
+                else
+                {
+                    USART2_RX_BUF[USART2_RX_STA & 0X3FFF] = res ;
+                    USART2_RX_STA++;
+                    if(USART2_RX_STA > (USART2_MAX_RECV_LEN - 1))USART2_RX_STA =
+                            0; //接收数据错误,重新开始接收
+
+                }
+            }
+        }
+    }
+}*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

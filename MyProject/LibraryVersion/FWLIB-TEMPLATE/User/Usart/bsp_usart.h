@@ -4,6 +4,10 @@
 #include "stm32f4xx.h" 
 #include "stdio.h"	
 #include "stm32f4xx_conf.h"
+
+             //接收数据状态
+
+
 /*串口初始化参数结构体*/
 typedef struct 
 {
@@ -15,8 +19,10 @@ typedef struct
 }USART_InitParamDef;
 
 
-void USART2_Init(void);
-void USART1_Init(void);
+void USART2_Init(u32 USART_BaudRate);
 void USART_SendByte(USART_TypeDef *pUSARTx, uint8_t ch);
-	
+void u2_printf(char* fmt, ...);	
+void USART2_Test(void);
+void Usart2_Send_isr(uint8_t ch);
+void Usart2_sendstring(uint8_t* cp) ;
 #endif   //BSP_USART_H
