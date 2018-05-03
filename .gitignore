@@ -1,6 +1,6 @@
 *.[o]
 Output*/
-Objects*/
+Objects/
 *.crf
 *.d
 *pre
