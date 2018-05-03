@@ -1,0 +1,6 @@
+*.[o]
+Output*/
+*.crf
+*.d
+*.pre
+
